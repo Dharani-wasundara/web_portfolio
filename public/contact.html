@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Dharani Wasundara – reach out via the contact form or social links.">
+    <title>Contact | Dharani Wasundara</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* Info side */
+        .contact-info {
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-info h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .contact-detail-icon {
+            width: 42px;
+            height: 42px;
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-detail-text .label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.2rem;
+        }
+
+        .contact-detail-text .value {
+            font-size: 0.9rem;
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .contact-detail-text a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contact-detail-text a:hover {
+            text-decoration: underline;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .social-icon-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(138, 43, 226, 0.12);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 50px;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-icon-btn:hover {
+            background: rgba(138, 43, 226, 0.25);
+            transform: translateY(-2px);
+        }
+
+        /* Form side */
+        .contact-form-card {
+            padding: 2.5rem;
+        }
+
+        .contact-form-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.8rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.4rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.85rem 1.1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.93rem;
+            outline: none;
+            transition: var(--transition);
+            resize: vertical;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-dim);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--primary-lt);
+            background: rgba(138, 43, 226, 0.07);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.12);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        #form-feedback {
+            margin-top: 1rem;
+            padding: 0.9rem 1.2rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        #form-feedback.success {
+            background: rgba(34, 197, 94, 0.12);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #4ade80;
+            display: block;
+        }
+
+        #form-feedback.error {
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #f87171;
+            display: block;
+        }
+
+        #submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        @media (max-width: 800px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="page-wrapper">
+        <p class="section-label reveal">Let's Connect</p>
+        <h1 class="section-title reveal">Contact Me</h1>
+        <p class="section-subtitle reveal">
+            Whether you have an opportunity, a project idea, or just want to say hello — I'd love to hear from you!
+        </p>
+        <div class="section-divider"></div>
+
+        <div class="contact-layout">
+            <!-- Info -->
+            <div class="glass-card contact-info reveal">
+                <div>
+                    <h2>Get In Touch</h2>
+                    <p>Feel free to reach out through the form, or connect with me directly via my contact details or
+                        social platforms.</p>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">📍</div>
+                    <div class="contact-detail-text">
+                        <div class="label">Location</div>
+                        <div class="value" id="c-location">Ragama, Sri Lanka</div>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">📞</div>
+                    <div class="contact-detail-text">
+                        <div class="label">Phone</div>
+                        <div class="value"><a href="tel:+94766141046" id="c-phone">+94 76 614 1046</a></div>
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <div class="contact-detail-icon">✉️</div>
+                    <div class="contact-detail-text">
+                        <div class="label">Email</div>
+                        <div class="value"><a href="mailto:wasundaradharani@gmail.com"
+                                id="c-email">wasundaradharani@gmail.com</a></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div
+                        style="font-size:0.8rem;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:1px;margin-bottom:0.8rem;">
+                        Social Links</div>
+                    <div class="social-row">
+                        <a href="https://github.com/Dharaniwasundara" target="_blank" rel="noopener"
+                            class="social-icon-btn" id="c-github">⌥ GitHub</a>
+                        <a href="http://www.linkedin.com/in/dharani-wasundara-bb07a53za" target="_blank" rel="noopener"
+                            class="social-icon-btn" id="c-linkedin">✦ LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form -->
+            <div class="glass-card contact-form-card reveal">
+                <h3>Send Me a Message</h3>
+                <form id="contact-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" placeholder="e.g. John Doe" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What's this about?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Write your message here..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" id="submit-btn"
+                        style="width:100%;justify-content:center;">
+                        Send Message ✈
+                    </button>
+                    <div id="form-feedback"></div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/nav.js"></script>
+    <script>
+        // Populate contact details from API
+        fetch('/api/profile')
+            .then(r => r.json())
+            .then(p => {
+                document.getElementById('c-location').textContent = p.location;
+                document.getElementById('c-phone').textContent = p.phone;
+                document.getElementById('c-phone').href = 'tel:' + p.phone.replace(/\s+/g, '');
+                document.getElementById('c-email').textContent = p.email;
+                document.getElementById('c-email').href = 'mailto:' + p.email;
+                document.getElementById('c-github').href = p.github;
+                document.getElementById('c-linkedin').href = p.linkedin;
+            }).catch(() => { });
+
+        // Handle form submit
+        document.getElementById('contact-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submit-btn');
+            const fb = document.getElementById('form-feedback');
+
+            const body = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                subject: document.getElementById('subject').value.trim(),
+                message: document.getElementById('message').value.trim()
+            };
+
+            if (!body.name || !body.email || !body.message) {
+                fb.className = 'error';
+                fb.textContent = 'Please fill in all required fields (Name, Email, Message).';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = 'Sending...';
+
+            try {
+                const res = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(body)
+                });
+
+                const data = await res.json();
+
+                if (data.success) {
+                    fb.className = 'success';
+                    fb.textContent = '✓ ' + data.message;
+                    document.getElementById('contact-form').reset();
+                } else {
+                    throw new Error(data.error || 'Something went wrong.');
+                }
+            } catch (err) {
+                fb.className = 'error';
+                fb.textContent = '✗ ' + (err.message || 'Failed to send. Please try again.');
+            } finally {
+                btn.disabled = false;
+                btn.textContent = 'Send Message ✈';
+            }
+        });
+    </script>
+</body>
+
+</html>

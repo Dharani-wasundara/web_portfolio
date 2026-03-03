@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="About Dharani Wasundara – Education, skills, certifications and more.">
+    <title>About | Dharani Wasundara</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .about-hero {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .about-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 0 8px rgba(138, 43, 226, 0.1);
+            flex-shrink: 0;
+        }
+
+        .about-intro h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.3rem;
+        }
+
+        .about-intro .title-tag {
+            color: var(--primary-lt);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-intro p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            font-size: 0.97rem;
+        }
+
+        .about-actions {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Skills grid */
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .tech-pill {
+            padding: 0.45rem 1.1rem;
+            background: rgba(138, 43, 226, 0.14);
+            border: 1px solid rgba(138, 43, 226, 0.35);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .tech-pill:hover {
+            background: rgba(138, 43, 226, 0.28);
+            transform: translateY(-2px);
+        }
+
+        .soft-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .soft-skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1.1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+
+        .soft-skill-item::before {
+            content: '✦';
+            color: var(--primary-lt);
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        /* Education */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .edu-card {
+            padding: 1.8rem;
+        }
+
+        .edu-card .category-tag {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-lt);
+            margin-bottom: 0.6rem;
+        }
+
+        .edu-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.4rem;
+            line-height: 1.35;
+        }
+
+        .edu-card .institution {
+            font-size: 0.88rem;
+            color: var(--primary-lt);
+            margin-bottom: 0.25rem;
+            font-weight: 500;
+        }
+
+        .edu-card .period {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-style: italic;
+            margin-bottom: 0.8rem;
+        }
+
+        .edu-card .modules {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.6rem;
+        }
+
+        .module-tag {
+            font-size: 0.72rem;
+            padding: 0.2rem 0.6rem;
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            border-radius: 50px;
+            color: var(--text-muted);
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1.2rem;
+        }
+
+        .cert-card {
+            padding: 1.6rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .cert-icon {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .cert-title {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: var(--text);
+            margin-bottom: 0.3rem;
+            line-height: 1.35;
+        }
+
+        .cert-meta {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 640px) {
+            .about-hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+
+            .about-photo {
+                margin: 0 auto;
+            }
+
+            .about-actions {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="page-wrapper">
+
+        <!-- About Hero -->
+        <div class="glass-card about-hero reveal">
+            <img src="/assets/profile_pic.jpg" alt="Dharani Wasundara" class="about-photo">
+            <div class="about-intro">
+                <h1 id="about-name">Dharani Wasundara</h1>
+                <p class="title-tag" id="about-title">Computer Science Undergraduate · IIT Sri Lanka</p>
+                <p id="about-summary">Motivated and detail-oriented CS undergraduate with strong leadership experience
+                    in university organizations. Passionate about software development and problem-solving.</p>
+                <div class="about-actions">
+                    <a href="/contact.html" class="btn btn-primary">Contact Me</a>
+                    <a href="https://github.com/Dharaniwasundara" target="_blank" rel="noopener"
+                        class="btn btn-outline">GitHub</a>
+                    <a href="http://www.linkedin.com/in/dharani-wasundara-bb07a53za" target="_blank" rel="noopener"
+                        class="btn btn-outline">LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skills -->
+        <section style="margin-bottom:4rem;">
+            <p class="section-label">What I know</p>
+            <h2 class="section-title">Skills</h2>
+            <div class="section-divider"></div>
+
+            <div class="grid-2">
+                <!-- Technical -->
+                <div class="glass-card reveal" style="padding:2rem;">
+                    <h3
+                        style="font-family:'Outfit',sans-serif;font-size:1.15rem;color:var(--accent);margin-bottom:1.5rem;">
+                        Technical Skills</h3>
+                    <div id="skill-bars"></div>
+                </div>
+
+                <!-- Soft -->
+                <div class="glass-card reveal" style="padding:2rem;">
+                    <h3
+                        style="font-family:'Outfit',sans-serif;font-size:1.15rem;color:var(--accent);margin-bottom:1.2rem;">
+                        Soft Skills</h3>
+                    <div class="soft-skills-grid" id="soft-skills"></div>
+
+                    <h3
+                        style="font-family:'Outfit',sans-serif;font-size:1.15rem;color:var(--accent);margin:2rem 0 1rem;">
+                        Technologies & Tools</h3>
+                    <div class="tech-pills" id="tech-pills">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">Java</span>
+                        <span class="tech-pill">HTML</span>
+                        <span class="tech-pill">CSS</span>
+                        <span class="tech-pill">JavaScript</span>
+                        <span class="tech-pill">SQL</span>
+                        <span class="tech-pill">OOP</span>
+                        <span class="tech-pill">Figma</span>
+                        <span class="tech-pill">MySQL</span>
+                        <span class="tech-pill">Tkinter</span>
+                        <span class="tech-pill">Matplotlib</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education -->
+        <section style="margin-bottom:4rem;" id="education">
+            <p class="section-label">Academic Background</p>
+            <h2 class="section-title">Education</h2>
+            <div class="section-divider"></div>
+            <div class="edu-grid" id="edu-grid">
+                <!-- populated by JS -->
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section id="certifications">
+            <p class="section-label">Professional Development</p>
+            <h2 class="section-title">Certifications</h2>
+            <div class="section-divider"></div>
+            <div class="cert-grid" id="cert-grid">
+                <!-- populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <script src="/js/nav.js"></script>
+    <script>
+        // Load profile
+        fetch('/api/profile')
+            .then(r => r.json())
+            .then(p => {
+                document.getElementById('about-name').textContent = p.name;
+                document.getElementById('about-summary').textContent = p.summary;
+            }).catch(() => { });
+
+        // Load skills
+        fetch('/api/skills')
+            .then(r => r.json())
+            .then(skills => {
+                // Skill bars
+                const barsContainer = document.getElementById('skill-bars');
+                skills.technical.forEach(s => {
+                    barsContainer.innerHTML += `
+            <div class="skill-bar-label">
+              <span>${s.name}</span><span style="color:var(--text-dim)">${s.level}%</span>
+            </div>
+            <div class="skill-bar-track">
+              <div class="skill-bar-fill" data-level="${s.level}"></div>
+            </div>`;
+                });
+
+                // Soft skills
+                const softContainer = document.getElementById('soft-skills');
+                skills.soft.forEach(s => {
+                    softContainer.innerHTML += `<div class="soft-skill-item">${s}</div>`;
+                });
+
+                // Re-init skill bars after DOM update
+                document.querySelectorAll('.skill-bar-fill').forEach(f => {
+                    const obs = new IntersectionObserver(([e]) => {
+                        if (e.isIntersecting) { f.style.width = f.dataset.level + '%'; obs.disconnect(); }
+                    }, { threshold: 0.3 });
+                    obs.observe(f);
+                });
+            }).catch(() => { });
+
+        // Load education
+        fetch('/api/education')
+            .then(r => r.json())
+            .then(edu => {
+                const grid = document.getElementById('edu-grid');
+                edu.forEach(e => {
+                    const modules = e.modules && e.modules.length
+                        ? `<div class="modules">${e.modules.map(m => `<span class="module-tag">${m}</span>`).join('')}</div>` : '';
+                    const gpaLine = e.gpa ? `<span class="module-tag" style="background:rgba(192,132,252,0.15);border-color:rgba(192,132,252,0.4);color:var(--accent)">GPA ${e.gpa}</span>` : '';
+                    const gradeLine = e.grade ? `<span class="module-tag" style="background:rgba(192,132,252,0.15);border-color:rgba(192,132,252,0.4);color:var(--accent)">Grade ${e.grade}</span>` : '';
+                    grid.innerHTML += `
+            <div class="glass-card edu-card reveal">
+              <div class="category-tag">${e.category}</div>
+              <h3>${e.degree}</h3>
+              <div class="institution">${e.institution}</div>
+              <div class="period">${e.period}</div>
+              <div class="modules">${gpaLine}${gradeLine}${modules}</div>
+            </div>`;
+                });
+                // Re-init reveal for dynamically added elements
+                document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                    const obs = new IntersectionObserver(([e]) => {
+                        if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
+                    }, { threshold: 0.1 });
+                    obs.observe(el);
+                });
+            }).catch(() => { });
+
+        // Load certifications
+        fetch('/api/certifications')
+            .then(r => r.json())
+            .then(certs => {
+                const icons = ['🏅', '📘', '💡', '🖥️'];
+                const grid = document.getElementById('cert-grid');
+                certs.forEach((c, i) => {
+                    grid.innerHTML += `
+            <div class="glass-card cert-card reveal">
+              <span class="cert-icon">${icons[i % icons.length]}</span>
+              <div class="cert-title">${c.title}</div>
+              <div class="cert-meta">${c.issuer} · ${c.year}</div>
+            </div>`;
+                });
+                document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                    const obs = new IntersectionObserver(([e]) => {
+                        if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
+                    }, { threshold: 0.1 });
+                    obs.observe(el);
+                });
+            }).catch(() => { });
+    </script>
+</body>
+
+</html>

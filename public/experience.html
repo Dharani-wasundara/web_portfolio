@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Experience and Leadership – Dharani Wasundara's professional and university involvement.">
+    <title>Experience | Dharani Wasundara</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <style>
+        .exp-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            background: rgba(255, 255, 255, 0.04);
+            padding: 0.4rem;
+            border-radius: 50px;
+            border: 1px solid var(--border);
+            width: fit-content;
+        }
+
+        .exp-tab {
+            padding: 0.55rem 1.5rem;
+            border-radius: 50px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .exp-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-lt));
+            color: #fff;
+        }
+
+        .exp-tab:hover:not(.active) {
+            color: var(--text);
+            background: rgba(138, 43, 226, 0.15);
+        }
+
+        .exp-panel {
+            display: none;
+        }
+
+        .exp-panel.active {
+            display: block;
+        }
+
+        /* Leadership cards */
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .leadership-card {
+            padding: 1.8rem;
+        }
+
+        .leadership-card .badge-org {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--primary-lt);
+            margin-bottom: 0.5rem;
+        }
+
+        .leadership-card h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.25rem;
+            line-height: 1.35;
+        }
+
+        .leadership-card .period-tag {
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            background: rgba(138, 43, 226, 0.15);
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            border-radius: 50px;
+            font-size: 0.75rem;
+            color: var(--accent);
+            margin-bottom: 0.9rem;
+        }
+
+        .leadership-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .leadership-card ul li {
+            color: var(--text-muted);
+            font-size: 0.87rem;
+            line-height: 1.55;
+            padding-left: 1.1rem;
+            position: relative;
+        }
+
+        .leadership-card ul li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-lt);
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <main class="page-wrapper">
+        <p class="section-label reveal">Professional Journey</p>
+        <h1 class="section-title reveal">Experience & Leadership</h1>
+        <p class="section-subtitle reveal">
+            My work experience and extensive involvement in university organizations as a leader, organizer, and active
+            contributor.
+        </p>
+        <div class="section-divider"></div>
+
+        <!-- Tabs -->
+        <div class="exp-tabs reveal">
+            <button class="exp-tab active" onclick="switchTab('work', this)">Work Experience</button>
+            <button class="exp-tab" onclick="switchTab('leadership', this)">Leadership & Involvement</button>
+        </div>
+
+        <!-- Work Experience panel -->
+        <div class="exp-panel active" id="panel-work">
+            <div class="timeline" id="work-timeline">
+                <!-- populated by JS -->
+            </div>
+        </div>
+
+        <!-- Leadership panel -->
+        <div class="exp-panel" id="panel-leadership">
+            <div class="leadership-grid" id="leadership-grid">
+                <!-- populated by JS -->
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/nav.js"></script>
+    <script>
+        function switchTab(tab, btn) {
+            document.querySelectorAll('.exp-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.exp-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('panel-' + tab).classList.add('active');
+        }
+
+        // Load work experience
+        fetch('/api/experience')
+            .then(r => r.json())
+            .then(exp => {
+                const tl = document.getElementById('work-timeline');
+                exp.forEach(e => {
+                    const points = e.points.map(p => `<li>${p}</li>`).join('');
+                    tl.innerHTML += `
+            <div class="timeline-item reveal">
+              <h3>${e.company}</h3>
+              <div class="role">${e.role}</div>
+              <div class="period">${e.period} · ${e.type}</div>
+              <ul>${points}</ul>
+            </div>`;
+                });
+                triggerReveal();
+            }).catch(() => { });
+
+        // Load leadership
+        fetch('/api/leadership')
+            .then(r => r.json())
+            .then(items => {
+                const grid = document.getElementById('leadership-grid');
+                items.forEach((item, i) => {
+                    const points = item.points.map(p => `<li>${p}</li>`).join('');
+                    grid.innerHTML += `
+            <div class="glass-card leadership-card reveal" style="animation-delay:${i * 0.08}s">
+              <div class="badge-org">${item.organization}</div>
+              <h3>${item.title}</h3>
+              <span class="period-tag">${item.period}</span>
+              <ul>${points}</ul>
+            </div>`;
+                });
+                triggerReveal();
+            }).catch(() => { });
+
+        function triggerReveal() {
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => {
+                const obs = new IntersectionObserver(([e]) => {
+                    if (e.isIntersecting) { el.classList.add('visible'); obs.disconnect(); }
+                }, { threshold: 0.08 });
+                obs.observe(el);
+            });
+        }
+    </script>
+</body>
+
+</html>
